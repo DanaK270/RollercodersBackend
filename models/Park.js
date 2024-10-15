@@ -11,4 +11,6 @@ const parkSchema = mongoose.Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model('Park', parkSchema)
+const Park = mongoose.model('Park', parkSchema)
+
+module.exports = { Park }
