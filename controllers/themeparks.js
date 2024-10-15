@@ -14,17 +14,32 @@ exports.parks_view_get = async (req, res) => {
   }
 }
 
-exports.parks_create_add = (req, res) => {
-  let park = new Park({
-    name: 'newPark'
-  })
+exports.parks_add_post = (req, res) => {
+  try {
+    let parkData = {
+      ...req.body
+      // image: req.file.filename
+    }
+    let park = new Park(parkData)
+    park.save()
+    // }
+    //   const image = req.files
+    //   const parkData = {
+    //     park,
+    //     name,
+    //     country,
+    //     type,
+    //     timezone,
+    //     description,
+    //     // userId,
+    //     image: file.path
+    //   }
 
-  author
-    .save()
-    .then(() => {
-      res.redirect('/author/index')
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+    // const response = await axios.post('', parkData)
+
+    res.send(park)
+  } catch (error) {
+    console.error('Error adding park:', error)
+    res.status(500).send('Error adding park')
+  }
 }
