@@ -5,7 +5,8 @@ exports.parks_view_get = async (req, res) => {
   try {
     // get themeparks data from the API
     const response = await axios.get('https://tp.arendz.nl/parks')
-    const parks = response.data
+    const dbResponse = await Park.find()
+    const parks = [...response.data, ...dbResponse]
     res.json(parks)
     //console.log(parks)
   } catch (error) {
