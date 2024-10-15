@@ -18,7 +18,6 @@ exports.parks_add_post = (req, res) => {
   try {
     let parkData = {
       ...req.body
-      // image: req.file.filename
     }
     let park = new Park(parkData)
     park.save()
