@@ -29,3 +29,14 @@ exports.parks_create_add = (req, res) => {
       console.log(err)
     })
 }
+
+exports.parks_delete = async (req, res) => {
+  const { id } = req.params
+  try {
+    await Park.findByIdAndDelete(id)
+    res.status(200).send('Park deleted successfully')
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Error deleting park')
+  }
+}
