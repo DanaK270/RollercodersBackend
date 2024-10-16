@@ -15,19 +15,23 @@ exports.parks_view_get = async (req, res) => {
   }
 }
 
-exports.parks_create_add = (req, res) => {
-  let park = new Park({
-    name: 'newPark'
-  })
-
-  author
-    .save()
-    .then(() => {
-      res.redirect('/author/index')
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+exports.parks_add_post = (req, res) => {
+  // Save this data to a database probably
+  console.log('BOOK CREATE: ', req.body)
+  console.log(req.file)
+  try {
+    const imageName = req.file.filename
+    let parkData = {
+      ...req.body,
+      image: imageName
+    }
+    let park = new Park(parkData)
+    park.save()
+    res.send(park)
+  } catch (error) {
+    console.error('Error adding park:', error)
+    res.status(500).send('Error adding park')
+  }
 }
 
 exports.parks_delete = async (req, res) => {
