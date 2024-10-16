@@ -12,4 +12,5 @@ const parkSchema = mongoose.Schema(
 )
 
 const Park = mongoose.model('Park', parkSchema)
+
 module.exports = { Park }
