@@ -15,27 +15,17 @@ exports.parks_view_get = async (req, res) => {
 }
 
 exports.parks_add_post = (req, res) => {
+  // Save this data to a database probably
+  console.log('BOOK CREATE: ', req.body)
+  console.log(req.file)
   try {
+    const imageName = req.file.filename
     let parkData = {
-      ...req.body
+      ...req.body,
+      image: imageName
     }
     let park = new Park(parkData)
     park.save()
-    // }
-    //   const image = req.files
-    //   const parkData = {
-    //     park,
-    //     name,
-    //     country,
-    //     type,
-    //     timezone,
-    //     description,
-    //     // userId,
-    //     image: file.path
-    //   }
-
-    // const response = await axios.post('', parkData)
-
     res.send(park)
   } catch (error) {
     console.error('Error adding park:', error)
