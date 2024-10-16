@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 require('dotenv').config()
+const path = require('path')
 
 // PORT Configuration
 const PORT = process.env.PORT
@@ -9,8 +10,8 @@ const PORT = process.env.PORT
 // Initialize Express
 const app = express()
 
-
 app.use(cors())
+app.use('/images', express.static(path.join(__dirname, '/public/images')))
 
 const db = require('./config/db')
 
