@@ -9,7 +9,9 @@ const PORT = process.env.PORT
 // Initialize Express
 const app = express()
 
-// Database connection
+
+app.use(cors())
+
 const db = require('./config/db')
 
 // Import Routes
